@@ -20,11 +20,12 @@ public class BinaryTree {
         List<List<String>> levels = new ArrayList<>();
         List<TreeNode> currentLevel = new ArrayList<>();
         List<TreeNode> nextLevel = new ArrayList<>();
-
+        // Start with the root node  
         currentLevel.add(root);
-        int widest = 0;
-        int nonNullNodes = 1;
-
+        int widest = 0; // To track the widest node (longest string length)
+        int nonNullNodes = 1; // To track non-null nodes in the current level
+        
+        // Process nodes level by level until there are no more nodes to process 
         while (nonNullNodes != 0) {
             List<String> line = new ArrayList<>();
             nonNullNodes = 0;
@@ -85,12 +86,11 @@ public class BinaryTree {
                 }
                 System.out.println();
             }
-
+            // Print the values of the nodes in the current line  
             for (String nodeValue : line) {
                 if (nodeValue == null) nodeValue = "";
                 int leftPadding , rightPadding;
-
-               rightPadding=leftPadding = (int) Math.floor(perPiece / 2f - nodeValue.length() / 2f);
+                rightPadding=leftPadding = (int) Math.floor(perPiece / 2f - nodeValue.length() / 2f);
 
                 for (int k = 0; k < leftPadding; k++) {
                     System.out.print(" ");
@@ -101,7 +101,7 @@ public class BinaryTree {
                 }
             }
             System.out.println();
-
+            // Halve the piece width for the next level  
             perPiece /= 2;
         }
     }
