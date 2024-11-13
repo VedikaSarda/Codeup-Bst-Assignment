@@ -4,7 +4,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         BinaryTree tree = new BinaryTree();
-        ModifyTree newTree = new ModifyTree();
         System.out.println("Enter values for the tree (between 0 and 999), or 'q' to quit:");
         while (input.hasNext()) {
             if (input.hasNextInt()) {
@@ -23,26 +22,9 @@ public class Main {
                 }
             }
         }
+        // print the Binary Tree Structure 
         System.out.println("Binary Search Tree Structure:");
         tree.printTree();
-
-        System.out.println("Do you want to modify the tree? (yes/no)");
-        String modify = input.next();
-
-        if (modify.equalsIgnoreCase("yes")) {
-            System.out.println("Enter the new root value:");
-            if (input.hasNextInt()) {
-                int newRoot = input.nextInt();
-               newTree.changeRoot(newRoot);
-                System.out.println("Changed root to: " + newRoot);
-            } else {
-                System.out.println("Invalid input. Please enter a valid integer.");
-            }
-        }
-
-        System.out.println("Updated Binary Search Tree Structure:");
-        newTree.printTree();
-
-    }
+     }
 }
 
