@@ -1,3 +1,9 @@
+/**
+* Binary Search Tree Implementation and Visuliazation
+* Author: Vedika Sarda
+* Date: 11th November 2024
+* This program implements binary search tree and hepls us to visulize it in tree format.
+*/
 package BinarySearchTree;
 import java.util.ArrayList;
 import java.util.List;
