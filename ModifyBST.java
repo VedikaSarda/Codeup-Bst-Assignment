@@ -98,51 +98,55 @@ class BinarySearchTree {
             for (TreeNode node : currentLevel) {
                 if (node == null) {
                     line.add(null);
+                    // Add null two times for its right and left child
                     nextLevel.add(null);
                     nextLevel.add(null);
                 } else {
                     String valueStr = String.valueOf(node.value);
                     line.add(valueStr);
                     if (valueStr.length() > widest) widest = valueStr.length();
-
                     nextLevel.add(node.left);
                     nextLevel.add(node.right);
-
+                    //for Counting the number of not null child
                     if (node.left != null) nonNullNodes++;
                     if (node.right != null) nonNullNodes++;
                 }
             }
             levels.add(line);
+            //move next Level to current level
             currentLevel = nextLevel;
             nextLevel = new ArrayList<>();
         }
-        int perPiece = levels.get(levels.size() - 1).size() * (widest + 4);
+        /*** 
+         * Getting the size of lastList added in level
+         * for the total space required for a level
+         */
+        int perLevel = levels.get(levels.size() - 1).size() * (widest + 4);
         for (int i = 0; i < levels.size(); i++) {
             List<String> line = levels.get(i);
-            int halfPiece = (int) Math.floor(perPiece / 2f) - 1;
-
+            int halfLevel = (int) Math.floor(perLevel / 2f) - 1;
             if (i > 0) {
                 for (int j = 0; j < line.size(); j++) {
-                    char c = ' ';
+                    char space = ' ';
                     if (j % 2 == 1) {
                         if (line.get(j - 1) != null) {
-                            c = (line.get(j) != null) ? '|' : '_';
+                            space = (line.get(j) != null) ? '|' : '_';
                         } else if (line.get(j) != null) {
-                            c = '_';
+                            space = '|';
                         }
                     }
-                    System.out.print(c);
+                    System.out.print(space);
 
                     if (line.get(j) == null) {
-                        for (int k = 0; k < perPiece - 1; k++) {
+                        for (int k = 0; k < perLevel - 1; k++) {
                             System.out.print(" ");
                         }
                     } else {
-                        for (int k = 0; k < halfPiece; k++) {
+                        for (int k = 0; k < halfLevel; k++) {
                             System.out.print(j % 2 == 0 ? " " : "_");
                         }
                         System.out.print(j % 2 == 0 ? "_" : " ");
-                        for (int k = 0; k < halfPiece; k++) {
+                        for (int k = 0; k < halfLevel; k++) {
                             System.out.print(j % 2 == 0 ? "_" : " ");
                         }
                     }
@@ -153,7 +157,7 @@ class BinarySearchTree {
                 if (nodeValue == null) nodeValue = "";
                 int leftPadding , rightPadding;
 
-                rightPadding=leftPadding = (int) Math.floor(perPiece / 2f - nodeValue.length() / 2f);
+                rightPadding=leftPadding = (int) Math.floor(perLevel / 2f - nodeValue.length() / 2f);
 
                 for (int k = 0; k < leftPadding; k++) {
                     System.out.print(" ");
@@ -165,7 +169,7 @@ class BinarySearchTree {
             }
             System.out.println();
 
-            perPiece /= 2;
+            perLevel /= 2;
         }
     }
 }
